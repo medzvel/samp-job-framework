@@ -10,4 +10,5 @@
 //#include <streamer>
 #include <YSI\y_hooks>
 
-#include "job_framework\main.inc"
+#include <job_framework\main>
+#include <job_framework\player>
