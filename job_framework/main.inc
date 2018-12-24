@@ -1,5 +1,8 @@
-#include <YSI\y_hooks>
-#include <YSI\y_iterate>
+#if defined _JF_uses_YSI
+	#include <YSI_Data\y_iterate> // to be sure if a non-sampctl user has YSI 5.x no warnings will be shown
+#else
+	#include "foreach.inc"
+#endif
 
 //JOB DEFINES
 #if !defined MAX_JOBS
