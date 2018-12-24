@@ -7,7 +7,7 @@
 // custom include guard
 #if defined _JF_included
 	#endinput
-#else
+#endif
 #define _JF_included
 
 // checkout if a non-sampctl user has YSI library
