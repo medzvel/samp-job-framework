@@ -2,31 +2,11 @@
 
 [![sampctl](https://shields.southcla.ws/badge/sampctl-samp--job--framework-2f2f2f.svg?style=for-the-badge)](https://github.com/medzvel/samp-job-framework)
 
-<!--
-Short description of your library, why it's useful, some examples, pictures or
-videos. Link to your forum release thread too.
-
-Remember: You can use "forumfmt" to convert this readme to forum BBCode!
-
-What the sections below should be used for:
-
-`## Installation`: Leave this section un-edited unless you have some specific
-additional installation procedure.
-
-`## Testing`: Whether your library is tested with a simple `main()` and `print`,
-unit-tested, or demonstrated via prompting the player to connect, you should
-include some basic information for users to try out your code in some way.
-
-And finally, maintaining your version number`:
-
-* Follow [Semantic Versioning](https://semver.org/)
-* When you release a new version, update `VERSION` and `git tag` it
-* Versioning is important for sampctl to use the version control features
-
-Happy Pawning!
--->
+Job Framework - Create Jobs Easily
 
 ## Installation
+
+### sampctl
 
 Simply install to your project:
 
@@ -37,27 +17,50 @@ sampctl package install medzvel/samp-job-framework
 Include in your code and begin using the library:
 
 ```pawn
-#include <samp-job-framework>
+#include <jobframework>
+```
+
+### non-sampctl
+
+Download that repository or *git clone* it, then copy/cut file *jobframework.inc* and *job_framework* folder and place them into *pawno/includes* directory
+
+Include in your code and begin using the library:
+
+```pawn
+#include <jobframework>
 ```
 
 ## Usage
 
-<!--
-Write your code documentation or examples here. If your library is documented in
-the source code, direct users there. If not, list your API and describe it well
-in this section. If your library is passive and has no API, simply omit this
-section.
--->
+### GLOBAL FUNCTIONS
+
+`JobType:DefineJobType(jTypWorkerStatus[], jTypPayment, jTypPickupID = 1239);`
+`CreateJob(jobName[], JobType:jType, Float:jPosition_X, Float:jPosition_Y, Float:jPosition_Z);` 
+`CountJobWorkers(jobID);` 
+`GetJobPayment(jobID);` 
+`GetJobName(jobID, output[], len = sizeof(output));` 
+`GetJobWorkerStatus(jobID, output[], len = sizeof(output));` 
+`JobsCreated();` 
+
+### PLAYER FUNCTIONS
+
+`SetPlayerJob(playerid, jobid);` 
+`GetPlayerJob(playerid);` 
+`RemovePlayerFromJob(playerid);`  
+
+### CALLBACKS
+
+`forward OnJobCreate(jobID, Float:jPos_X, Float:jPos_Y, Float:jPos_Z);` - *Called after `CreateJob` function*
+`forward OnPlayerPickupJobPickup(playerid, jobID);` *Called after a player pick ups job pickup* 
+`forward OnPlayerGetNewJob(playerid, jobID);` *Called after `SetPlayerJob` function*
+`forward OnPlayerRemoveFromJob(playerid, jobID);` *Called after `RemovePlayerFromJob` function*
 
 ## Testing
 
-<!--
-Depending on whether your package is tested via in-game "demo tests" or
-y_testing unit-tests, you should indicate to readers what to expect below here.
--->
-
-To test, simply run the package:
-
 ```bash
+sampctl package get medzvel/samp-job-framework
+
+sampctl package build --forceBuild
+
 sampctl package run
 ```
