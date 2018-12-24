@@ -1,22 +1,18 @@
 #include <a_samp>
 
-#include <job_framework\main>
-#include <job_framework\player>
+#include "jobframework.inc"
 
-#include <zcmd>
+#include <YSI\y_commands>
 
 
-new
-	JobType:testjobtype1,
-	testjob1
-;
+new JobType:testjobtype;
 
 new pMayChooseJob[MAX_PLAYERS];
 
 main()
 {
 	print("\n----------------------------------");
-	print(" Job Framework usage Example");
+	print(" > Job Framework: Example Usage");
 	print("----------------------------------\n");
 }
 
@@ -28,8 +24,8 @@ public OnGameModeInit()
 	SetGameModeText("Blank Script");
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	
-	testjobtype1 = DefineJobType("Farmer", 150);
-	testjob1 = CreateJob("Farmers", testjobtype1, 1946.9158,1320.6340,9.1094);
+	testjobtype = DefineJobType("Farmer", 150);
+	CreateJob("Farmers", testjobtype, 1946.9158,1320.6340,9.1094);
 	return 1;
 }
 
@@ -136,7 +132,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	return 1;
 }
 
-CMD:myjob(playerid, params[])
+YCMD:myjob(playerid, params[], help)
 {
 	new p_JobStatus[MAX_JOB_WORKER_STATUS], string[MAX_JOB_WORKER_STATUS + 15];
 	GetJobWorkerStatus(GetPlayerJob(playerid), p_JobStatus);
