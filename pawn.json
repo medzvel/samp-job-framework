@@ -1,0 +1,10 @@
+{
+	"user": "medzvel",
+	"repo": "samp-job-framework",
+	"entry": "example.pwn",
+	"output": "example.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"pawn-lang/YSI-Includes"
+	]
+}
