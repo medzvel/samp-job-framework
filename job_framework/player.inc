@@ -1,4 +1,6 @@
-#include <YSI\y_hooks>
+#if defined _JF_uses_YSI
+	#include <YSI_Coding\y_hooks>
+#endif
 
 #if !defined INVALID_PLAYER_JOB
 	#define INVALID_PLAYER_JOB (-1)
@@ -17,23 +19,71 @@ enum _jf_player_ {
 
 new jf_pVar[MAX_PLAYERS][_jf_player_];
 
-
-hook OnPlayerPickUpPickup(playerid, pickupid)
-{
-	for(new i; i<VAR__createdjobs;i++)
+#if defined _INC_y_hooks
+	hook OnPlayerPickUpPickup(playerid, pickupid)
 	{
-		while(VAR__Job[i][jPickup] == pickupid)
+		for(new i; i<VAR__createdjobs;i++)
 		{
-			CallLocalFunction("OnPlayerPickupJobPickup", "dd", playerid, i);
-			break;
+			while(VAR__Job[i][jPickup] == pickupid)
+			{
+				CallLocalFunction("OnPlayerPickupJobPickup", "dd", playerid, i);
+				break;
+			}
 		}
+		return 1;
 	}
-}
 
-hook OnPlayerConnect(playerid)
-{
-	SetPlayerJob(playerid, INVALID_PLAYER_JOB);
-}
+	hook OnPlayerConnect(playerid)
+	{
+		SetPlayerJob(playerid, INVALID_PLAYER_JOB);
+		return 1;
+	}
+#else
+	public OnPlayerPickUpPickup(playerid, pickupid)
+	{
+		for(new i; i<VAR__createdjobs;i++)
+		{
+			while(VAR__Job[i][jPickup] == pickupid)
+			{
+				CallLocalFunction("OnPlayerPickupJobPickup", "dd", playerid, i);
+				break;
+			}
+		}
+		#if defined _JF_OnPlayerPickUpPickup
+			return _JF_OnPlayerPickUpPickup(playerid, pickupid);
+		#else 
+			return 1;
+		#endif
+	}
+	#if defined _ALS_OnPlayerPickUpPickup
+		#undef OnPlayerPickUpPickup
+	#else
+		#define _ALS_OnPlayerPickUpPickup
+	#endif
+	#define OnPlayerPickUpPickup _JF_OnPlayerPickUpPickup
+	#if defined _JF_OnPlayerPickUpPickup
+		forward _JF_OnPlayerPickUpPickup(playerid, pickupid);
+	#endif
+
+	public OnPlayerConnect(playerid)
+	{
+		SetPlayerJob(playerid, INVALID_PLAYER_JOB);
+		#if defined _JF_OnPlayerConnect
+			return _JF_OnPlayerConnect(playerid);
+		#else
+			return 1;
+		#endif
+	}
+	#if defined _ALS_OnPlayerConnect
+		#undef OnPlayerConnect
+	#else
+		#define _ALS_OnPlayerConnect
+	#endif
+	#define OnPlayerConnect _JF_OnPlayerConnect
+	#if defined _JF_OnPlayerConnect
+		forward _JF_OnPlayerConnect(playerid);
+	#endif
+#endif
 
 stock SetPlayerJob(playerid, jobid)
 {
