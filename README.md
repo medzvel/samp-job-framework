@@ -34,26 +34,26 @@ Include in your code and begin using the library:
 
 ### GLOBAL FUNCTIONS
 
-`JobType:DefineJobType(jTypWorkerStatus[], jTypPayment, jTypPickupID = 1239);`
-`CreateJob(jobName[], JobType:jType, Float:jPosition_X, Float:jPosition_Y, Float:jPosition_Z);` 
-`CountJobWorkers(jobID);` 
-`GetJobPayment(jobID);` 
-`GetJobName(jobID, output[], len = sizeof(output));` 
-`GetJobWorkerStatus(jobID, output[], len = sizeof(output));` 
-`JobsCreated();` 
+* `JobType:DefineJobType(jTypWorkerStatus[], jTypPayment, jTypPickupID = 1239);`
+* `CreateJob(jobName[], JobType:jType, Float:jPosition_X, Float:jPosition_Y, Float:jPosition_Z);` 
+* `CountJobWorkers(jobID);` 
+* `GetJobPayment(jobID);` 
+* `GetJobName(jobID, output[], len = sizeof(output));` 
+* `GetJobWorkerStatus(jobID, output[], len = sizeof(output));` 
+* `JobsCreated();` 
 
 ### PLAYER FUNCTIONS
 
-`SetPlayerJob(playerid, jobid);` 
-`GetPlayerJob(playerid);` 
-`RemovePlayerFromJob(playerid);`  
+* `SetPlayerJob(playerid, jobid);` 
+* `GetPlayerJob(playerid);` 
+* `RemovePlayerFromJob(playerid);`  
 
 ### CALLBACKS
 
-`forward OnJobCreate(jobID, Float:jPos_X, Float:jPos_Y, Float:jPos_Z);` - *Called after `CreateJob` function*
-`forward OnPlayerPickupJobPickup(playerid, jobID);` *Called after a player pick ups job pickup* 
-`forward OnPlayerGetNewJob(playerid, jobID);` *Called after `SetPlayerJob` function*
-`forward OnPlayerRemoveFromJob(playerid, jobID);` *Called after `RemovePlayerFromJob` function*
+* `forward OnJobCreate(jobID, Float:jPos_X, Float:jPos_Y, Float:jPos_Z);` - *Called after `CreateJob` function*
+* `forward OnPlayerPickupJobPickup(playerid, jobID);` *Called after a player pick ups job pickup* 
+* `forward OnPlayerGetNewJob(playerid, jobID);` *Called after `SetPlayerJob` function*
+* `forward OnPlayerRemoveFromJob(playerid, jobID);` *Called after `RemovePlayerFromJob` function*
 
 ## Testing
 
