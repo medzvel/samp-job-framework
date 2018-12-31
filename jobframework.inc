@@ -4,11 +4,17 @@
 	Include Version - 0.1A
 	Created By: Amagida (2018)
 */
+// custom include guard
+#if defined _JF_included
+	#endinput
+#endif
+#define _JF_included
 
+// checkout if a non-sampctl user has YSI library
+#tryinclude <YSI_Coding\y_hooks> // in case a non-sampctl user has YSI 5.x, no warnings will be shown
+#if defined _INC_y_hooks
+	#define _JF_uses_YSI
+#endif
 
-// stuff
-//#include <streamer>
-#include <YSI\y_hooks>
-
-#include <job_framework\main>
-#include <job_framework\player>
+#include "job_framework\main.inc"
+#include "job_framework\player.inc"
