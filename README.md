@@ -60,7 +60,7 @@ Include in your code and begin using the library:
 ```bash
 sampctl package get medzvel/samp-job-framework
 
-sampctl package build --forceBuild
+sampctl package build --forceEnsure
 
 sampctl package run
 ```
